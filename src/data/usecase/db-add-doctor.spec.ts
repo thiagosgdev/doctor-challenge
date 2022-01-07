@@ -56,11 +56,19 @@ describe("Db Add Doctor", () => {
         const executeSpy = jest.spyOn(addDoctorRepositoryStub, "execute");
         await sut.execute(mockAddDoctorParams());
         expect(executeSpy).toHaveBeenCalledWith(mockAddDoctorParams());
-    })
+    });
 
     test("Should return the added doctor on AddDoctorRepository success", async() => {
         const { sut } = makeSut();
         const doctor = await sut.execute(mockAddDoctorParams());
         expect(doctor).toHaveProperty("id");
-    })
+    });
+
+    test("Should return null on AddDoctorRepository fail", async() => {
+        const { sut, addDoctorRepositoryStub } = makeSut();
+        jest.spyOn(addDoctorRepositoryStub, "execute").mockReturnValueOnce(Promise.resolve(null));
+        const doctor = await sut.execute(mockAddDoctorParams());
+        expect(doctor).toBeNull();
+    });
+
 })
