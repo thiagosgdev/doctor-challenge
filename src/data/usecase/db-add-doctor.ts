@@ -9,7 +9,7 @@ export class DbAddDoctor implements AddDoctorRepository{
         private readonly addDoctorRepository: AddDoctorRepository
     ){}
     async execute(data: AddDoctorParams): Promise<DoctorModel> {
-        await this.addDoctorRepository.execute(data)
-        return null
+        const doctor = await this.addDoctorRepository.execute(data)
+        return doctor;
     }
 }
