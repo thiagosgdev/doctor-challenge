@@ -71,4 +71,11 @@ describe("Db Add Doctor", () => {
         expect(doctor).toBeNull();
     });
 
+    test("Should throw if AddDoctorRepository throws", async() => {
+        const { sut, addDoctorRepositoryStub } = makeSut();
+        jest.spyOn(addDoctorRepositoryStub, "execute").mockReturnValueOnce(Promise.reject(new Error()));
+        const doctor = sut.execute(mockAddDoctorParams());
+        await expect(doctor).rejects.toThrow();
+    });
+
 })
