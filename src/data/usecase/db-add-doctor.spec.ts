@@ -57,4 +57,10 @@ describe("Db Add Doctor", () => {
         await sut.execute(mockAddDoctorParams());
         expect(executeSpy).toHaveBeenCalledWith(mockAddDoctorParams());
     })
+
+    test("Should return the added doctor on AddDoctorRepository success", async() => {
+        const { sut } = makeSut();
+        const doctor = await sut.execute(mockAddDoctorParams());
+        expect(doctor).toHaveProperty("id");
+    })
 })
