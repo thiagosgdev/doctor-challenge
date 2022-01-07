@@ -10,6 +10,10 @@ export class DbAddDoctor implements AddDoctorRepository{
     ){}
     async execute(data: AddDoctorParams): Promise<DoctorModel> {
         const doctor = await this.addDoctorRepository.execute(data)
-        return doctor;
+        if(doctor){
+            return doctor;
+        }
+        return null;
     }
+
 }
