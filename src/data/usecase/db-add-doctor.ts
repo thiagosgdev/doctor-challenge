@@ -15,5 +15,4 @@ export class DbAddDoctor implements AddDoctorRepository{
         }
         return null;
     }
-
 }
