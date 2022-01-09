@@ -1,0 +1,13 @@
+{
+    "type": "mysql",
+    "port": 3306,
+    "host": "localhost",
+    "username": "root",
+    "password": "root",
+    "database": "doctors_challenge",
+    "migrations": ["./src/infra/db/typeorm/migrations/*.ts"],
+    "entities": ["./src/domain/entities/*.ts"],
+    "cli": {
+        "migrationsDir": "./src/infra/db/typeorm/migrations"
+    }
+}
