@@ -7,6 +7,8 @@
     "database": "doctors_challenge",
     "migrations": ["./src/infra/db/typeorm/migrations/*.ts"],
     "entities": ["./src/domain/entities/*.ts"],
+    "dropSchema": true,
+    "migrationsRun":true,
     "cli": {
         "migrationsDir": "./src/infra/db/typeorm/migrations"
     }

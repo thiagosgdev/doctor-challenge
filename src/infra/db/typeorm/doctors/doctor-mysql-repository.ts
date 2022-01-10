@@ -13,8 +13,11 @@ export class DoctorMysqlRepository implements AddDoctor{
 
     async add(data: AddDoctorParams): Promise<DoctorModel> {
         const doctor = this.repository.create(data);
-        await this.repository.save(doctor);
-        return doctor;
+        if(doctor){
+            await this.repository.save(doctor);
+            return doctor;
+        }
+        return null;
     }
 
 }
