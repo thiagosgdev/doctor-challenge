@@ -46,4 +46,11 @@ describe("Doctor Mysql Repository", () => {
         const doctor = await sut.add(mockAddDoctorParams());
         expect(doctor).toBeNull();
     });
+
+    test("Should throw if add() throws", async() =>{
+        const sut = makeSut();
+        jest.spyOn(sut, "add").mockReturnValueOnce(Promise.reject(new Error()));
+        const doctor = sut.add(mockAddDoctorParams());
+        await expect(doctor).rejects.toThrow();
+    });
 })
