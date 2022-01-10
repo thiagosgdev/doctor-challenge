@@ -32,12 +32,18 @@ describe("Doctor Mysql Repository", () => {
         await connection.clear();
     });
     afterAll(async () => {
-        await connection.close();
     });
     
     test("Should return the added doctor on add() success", async() =>{
         const sut = makeSut();
         const doctor = await sut.add(mockAddDoctorParams());
         expect(doctor).toHaveProperty("id");
-    })
+    });
+
+    test("Should return null on add() fail", async() =>{
+        const sut = makeSut();
+        jest.spyOn(sut, "add").mockReturnValueOnce(Promise.resolve(null));
+        const doctor = await sut.add(mockAddDoctorParams());
+        expect(doctor).toBeNull();
+    });
 })
